@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Recarga PA</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo Recarga PA" />
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#inicio" onclick="showInicio()">Início</a></li>
+                <li><a href="#consultar" onclick="showConsultar()">Consultar</a></li>
+                <li><a href="#beneficios" onclick="showBeneficios()">Benefícios</a></li>
+                <li><a href="#contato" onclick="showContato()">Contato</a></li> <!-- Adicionado Contato -->
+                <li><a href="#">Cadastrar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="inicio">
+    <div class="content">
+        <h2>Bem-vindo ao Portal de Carteirinha Estudantil!</h2>
+        <p>Aqui, você pode solicitar sua carteirinha estudantil de maneira rápida e prática. A carteirinha é um documento essencial para garantir uma série de benefícios e descontos exclusivos para estudantes, como passagens de transporte.</p>
+        <p>No nosso site, você encontrará todas as informações sobre como solicitar sua carteirinha, além de poder acompanhar o status do seu pedido e explorar os benefícios que você pode aproveitar com o seu novo documento.</p>
+        <p>Aproveite as vantagens e tenha a sua carteirinha em mãos para desfrutar de descontos e benefícios em diversos serviços.</p>
+        <p>Não perca tempo, cadastre-se agora e comece a aproveitar todos os benefícios de ser um estudante!</p>
+    </div>
+    </main>
+
+
+    <section id="consultar" style="display: none;">
+        <div class="content">
+            <h2>Consultar a Sua Carteirinha Estudantil</h2>
+            <p>Preencha os dados abaixo:</p>
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" />
+
+                <label for="matricula">Matrícula:</label>
+                <input type="text" id="matricula" name="matricula" placeholder="Digite sua matrícula" />
+
+                <button type="submit">Consultar</button>
+            </form>
+
+            <div class="resultado-consulta">
+                Resultado da consulta aparecerá aqui.
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" style="display: none;">
+        <div class="beneficios-content">
+            <h2>Benefícios da Carteirinha Estudantil</h2>
+            <p>A sua carteirinha estudantil oferece desconto exclusivo no transporte público municipal, facilitando sua locomoção diária para a faculdade, escola ou outros compromissos acadêmicos.</p>
+
+            <h3>Benefício Exclusivo: Desconto em Ônibus e Transporte Municipal</h3>
+            <p>Com a carteirinha estudantil, você tem direito a descontos especiais nas passagens de ônibus dentro da sua cidade. Esse benefício torna o seu deslocamento mais acessível e econômico, ajudando no dia a dia da sua rotina estudantil.</p>
+
+            <h4>Onde você pode usar sua carteirinha:</h4>
+            <ul>
+                <li>Ônibus municipais: Garantindo descontos nas passagens de transporte público urbano.</li>
+            </ul>
+
+            <h4>Como Funciona o Desconto?</h4>
+            <p><strong>Ônibus Municipais:</strong></p>
+            <ul>
+                <li>O desconto pode ser de até 50% do valor da passagem regular, dependendo das regras estabelecidas pelo município.</li>
+                <li>A carteirinha deve ser apresentada ao motorista ou fiscal no momento do embarque para garantir o benefício.</li>
+            </ul>
+
+            <h4>Regras Locais:</h4>
+            <p>O valor do desconto pode variar conforme a cidade, então é importante verificar as regulamentações locais para saber o percentual exato do desconto.</p>
+
+            <h4>Como Usar a Carteirinha no Transporte Municipal?</h4>
+            <ul>
+                <li><strong>Versão Física:</strong> Apresente sua carteirinha ao cobrador ou fiscal no momento de embarque.</li>
+                <li><strong>Versão Digital:</strong> Algumas cidades permitem o uso da versão digital da carteirinha, que pode ser acessada pelo celular.</li>
+            </ul>
+
+            <p><strong>Importante:</strong> Não se esqueça de portar sua carteirinha sempre que for utilizar o transporte público municipal, pois o benefício será concedido apenas com a apresentação do documento.</p>
+        </div>
+    </section>
+
+    <!-- Nova Seção Contato -->
+    <section id="contato" style="display: none;">
+        <div class="contato-content">
+            <h2>Contato</h2>
+            <p>Se você tem dúvidas, precisa de ajuda com sua solicitação ou deseja mais informações sobre a carteirinha estudantil, estamos à disposição para te ajudar!</p>
+            
+            <h3>Formulário de Contato</h3>
+            <p>Preencha o formulário abaixo e nossa equipe entrará em contato com você o mais rápido possível:</p>
+            
+            <form>
+                <label for="nomeContato">Nome Completo:</label>
+                <input type="text" id="nomeContato" name="nomeContato" placeholder="Digite seu nome completo" />
+
+                <label for="emailContato">E-mail:</label>
+                <input type="email" id="emailContato" name="emailContato" placeholder="Digite seu e-mail" />
+
+                <label for="assuntoContato">Assunto:</label>
+                <select id="assuntoContato" name="assuntoContato">
+                    <option value="cadastro">Cadastro</option>
+                    <option value="beneficios">Benefícios</option>
+                    <option value="problema">Problema com a Carteirinha</option>
+                    <option value="outros">Outros</option>
+                </select>
+
+                <label for="mensagemContato">Mensagem:</label>
+                <textarea id="mensagemContato" name="mensagemContato" placeholder="Escreva sua mensagem" rows="5"></textarea>
+
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+
+            <h3>Outras Formas de Contato</h3>
+            <p>Se preferir, você pode entrar em contato conosco através dos seguintes meios:</p>
+            <ul class="contato-info">
+                <li><strong>Telefone:</strong> (35) 98427-0887</li>
+                <li><strong>E-mail:</strong> joaodavi.muroni@gmail.com</li>
+                <li><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 9h às 18h</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>2025 @ Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById("nav-menu");
+            nav.classList.toggle("active");
+        }
+
+        function showInicio() {
+            document.getElementById("inicio").style.display = "block";
+            document.getElementById("consultar").style.display = "none";
+            document.getElementById("beneficios").style.display = "none";
+            document.getElementById("contato").style.display = "none";
+            document.getElementById("inicio").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function showConsultar() {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("consultar").style.display = "flex";
+            document.getElementById("beneficios").style.display = "none";
+            document.getElementById("contato").style.display = "none";
+            document.getElementById("consultar").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function showBeneficios() {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("consultar").style.display = "none";
+            document.getElementById("beneficios").style.display = "block";
+            document.getElementById("contato").style.display = "none";
+            document.getElementById("beneficios").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function showContato() {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("consultar").style.display = "none";
+            document.getElementById("beneficios").style.display = "none";
+            document.getElementById("contato").style.display = "flex";
+            document.getElementById("contato").scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>
