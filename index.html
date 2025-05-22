@@ -142,12 +142,14 @@
         }
 
         function showInicio() {
-            document.getElementById("inicio").style.display = "block";
+            document.getElementById("inicio").style.display = "flex";
             document.getElementById("consultar").style.display = "none";
             document.getElementById("beneficios").style.display = "none";
-            document.getElementById("contato").style.display = "none";
+            document.getElementById("contato").style.display = "none"; // <-- ESSA LINHA FALTAVA
             document.getElementById("inicio").scrollIntoView({ behavior: "smooth" });
         }
+
+
 
         function showConsultar() {
             document.getElementById("inicio").style.display = "none";
