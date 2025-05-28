@@ -37,8 +37,9 @@ header {
 }
 
 .logo img {
-    width: 110px;
+    width: 115px;
     height: auto;
+    padding-top: 13px;
 }
 
 .hamburger {
@@ -322,7 +323,6 @@ section#contato {
     color: #555;
 }
 
-/* ========== CADASTRAR ========== */
 section#cadastrar {
     display: flex;
     justify-content: center;
@@ -378,7 +378,6 @@ form button:hover {
     background-color: #0056b3;
 }
 
-/* ========== RODAPÉ ========== */
 footer {
     background-color: #007BFF;
     color: #ddd;
@@ -388,30 +387,30 @@ footer {
     flex-shrink: 0;
 }
 
-/* ========== RESPONSIVIDADE ========== */
+/* ========== RESPONSIVIDADE EM TELAS MENORES ========== */
 @media (max-width: 768px) {
     header {
     padding: 10px 30px;
-    justify-content: space-between; /* espaço entre logo e hamburguer */
-    padding: 10px 30px;              /* um pouco mais de padding lateral */
+    justify-content: space-between; 
+    padding: 10px 30px;              
     }
 
     .logo {
     position: static;
     transform: none;
-    margin: -10px auto 10px; /* sobe 10px */
+    margin: -10px auto -25px; 
     width: 110px;
   }
 
     .hamburger {
-    position: relative;     /* para manter o controle sem sobrepor */
-    right: 0;               /* zera offset */
-    top: 0;                 /* zera offset */
-    transform: none;        /* remove translate */
+    position: relative;     
+    right: 0;               
+    top: 0;                 
+    transform: none;       
     }
 
     nav {
-        top: 100px;
+        top: 75px;
     }
 
     nav ul {
@@ -437,6 +436,6 @@ footer {
 
     footer {
         height: 60px;
-        line-height: 60px;
+        line-height: 10px;
     }
 }
