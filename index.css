@@ -1,4 +1,4 @@
-/* Reset básico */
+/* ========== RESET BÁSICO ========== */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +7,6 @@
 
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
     font-family: 'Arial', sans-serif;
 }
 
@@ -18,7 +16,7 @@ body {
     min-height: 100vh;
 }
 
-/* Cabeçalho fixo */
+/* ========== CABEÇALHO FIXO ========== */
 header {
     background-color: #007BFF;
     color: white;
@@ -47,14 +45,15 @@ header {
 .hamburger {
     position: absolute;
     right: 20px;
-    top: 25px;
+    top: 50%;               /* mudar de 25px para 50% */
+    transform: translateY(-50%); /* centralizar verticalmente */
     width: 30px;
     height: 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    z-index: 100;
+    z-index: 101;
 }
 
 .hamburger span {
@@ -63,6 +62,7 @@ header {
     border-radius: 2px;
 }
 
+/* ========== NAVEGAÇÃO ========== */
 nav {
     position: absolute;
     top: 73px;
@@ -88,7 +88,7 @@ nav ul {
 }
 
 nav a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-size: 20px;
     transition: color 0.3s;
@@ -98,26 +98,29 @@ nav a:hover {
     color: #FFD700;
 }
 
-/* Espaço para o conteúdo ficar abaixo do header fixo */
-main, section#consultar, section#beneficios {
+/* ========== GERAL DAS SEÇÕES ========== */
+main,
+section#inicio,
+section#consultar,
+section#beneficios,
+section#cadastrar,
+section#contato {
     flex-grow: 1;
-    padding-top: 120px; /* espaço do header fixo */
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 40px; /* espaço para footer */
+    padding: 120px 50px 40px;
     box-sizing: border-box;
     background-color: white;
+    scroll-margin-top: 120px;
 }
 
-/* Main */
+/* ========== MAIN / INÍCIO ========== */
 main {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-/* Conteúdo dentro do main e seções */
-.content, .beneficios-content {
+main .content {
+    width: 35%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -125,17 +128,47 @@ main {
     padding: 25px;
 }
 
-/* Conteúdo main */
-main .content {
-    width: 35%;
+/* ========== INÍCIO ========== */
+#inicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Conteúdo benefícios centralizado */
+#inicio .content {
+    max-width: 700px;
+    padding: 35px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: justify;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+#inicio .content h2 {
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #007BFF;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+#inicio .content p {
+    margin-bottom: 0.5rem;
+}
+
+/* ========== BENEFÍCIOS ========== */
 .beneficios-content {
     max-width: 700px;
     margin: 0 auto;
     text-align: center;
     padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: #333;
 }
 
 .beneficios-content h2 {
@@ -155,7 +188,7 @@ main .content {
     color: #004494;
 }
 
-.beneficios-content p, 
+.beneficios-content p,
 .beneficios-content ul {
     font-size: 16px;
     line-height: 1.6;
@@ -172,7 +205,7 @@ main .content {
     text-align: left;
 }
 
-/* Consultar */
+/* ========== CONSULTAR ========== */
 section#consultar {
     display: flex;
     justify-content: center;
@@ -183,93 +216,36 @@ section#consultar {
 section#consultar .content {
     width: 100%;
     max-width: 600px;
-}
-
-/* Formulário */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-form label {
-    font-weight: bold;
-    font-size: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     color: #333;
+    padding: 25px;
 }
 
-form input {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    transition: border 0.3s ease;
-}
-
-form input:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-form button {
-    padding: 12px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-/* Resultado da consulta */
 .resultado-consulta {
     margin-top: 20px;
     font-style: italic;
     color: #444;
 }
 
-/* Rodapé */
-footer {
-    background-color: #007BFF;
-    color: #ddd;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-/* Contato */
+/* ========== CONTATO ========== */
 section#contato {
     display: flex;
-    justify-content: center;  /* centraliza horizontalmente o container */
-    padding-top: 120px;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 40px;
-    background-color: white;
-    flex-grow: 1;
+    justify-content: center;
 }
-
 
 .contato-content {
     max-width: 700px;
     width: 100%;
-    margin: 0 auto; /* centraliza horizontalmente */
+    margin: 0 auto;
     background-color: #f9f9f9;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     color: #333;
-    text-align: left; /* texto alinhado à esquerda dentro do bloco */
+    text-align: left;
 }
-
 
 .contato-content h2 {
     color: #007BFF;
@@ -301,10 +277,20 @@ section#contato {
     color: #555;
 }
 
+/* ========== CADASTRAR ========== */
+section#cadastrar {
+    display: flex;
+    justify-content: center;
+}
+
+/* ========== FORMULÁRIOS ========== */
 form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
 form label {
@@ -347,19 +333,65 @@ form button:hover {
     background-color: #0056b3;
 }
 
-#inicio {
-    display: flex;
-    justify-content: center;  /* centraliza horizontalmente */
-    align-items: center;      /* centraliza verticalmente */
-    height: calc(100vh - 120px); /* altura da viewport menos o header fixo (120px) */
+/* ========== RODAPÉ ========== */
+footer {
+    background-color: #007BFF;
+    color: #ddd;
+    text-align: center;
     padding: 20px;
+    width: 100%;
+    flex-shrink: 0;
 }
 
-#inicio .content {
-    max-width: 700px;         /* limitar largura para boa leitura */
-    text-align: center;       /* centraliza o texto dentro do bloco */
-    font-size: 1.3rem;        /* aumenta o tamanho da fonte */
-    line-height: 1.5;
-    color: #333;
-}
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 768px) {
+    header {
+    padding: 10px 30px;
+    justify-content: space-between; /* espaço entre logo e hamburguer */
+    padding: 10px 30px;              /* um pouco mais de padding lateral */
+    }
 
+    .logo {
+    position: static;
+    transform: none;
+    margin: -10px auto 10px; /* sobe 10px */
+    width: 110px;
+  }
+
+    .hamburger {
+    position: relative;     /* para manter o controle sem sobrepor */
+    right: 0;               /* zera offset */
+    top: 0;                 /* zera offset */
+    transform: none;        /* remove translate */
+    }
+
+    nav {
+        top: 100px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    main .content,
+    .beneficios-content,
+    .contato-content,
+    #inicio .content {
+        width: 100%;
+        padding: 20px;
+        text-align: left;
+        font-size: 1.1rem;
+    }
+
+    footer {
+        height: 60px;
+        line-height: 60px;
+    }
+}
