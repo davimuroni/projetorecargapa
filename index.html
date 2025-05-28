@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Logo Recarga PA" />
+            <img src="./logo/logorecarpa.png" alt="Logo Recarga PA" />
         </div>
         <div class="hamburger" onclick="toggleMenu()">
             <span></span>
@@ -18,11 +18,11 @@
         </div>
         <nav id="nav-menu">
             <ul>
-                <li><a href="#inicio" onclick="showInicio()">Início</a></li>
-                <li><a href="#consultar" onclick="showConsultar()">Consultar</a></li>
-                <li><a href="#beneficios" onclick="showBeneficios()">Benefícios</a></li>
-                <li><a href="#contato" onclick="showContato()">Contato</a></li> <!-- Adicionado Contato -->
-                <li><a href="#cadastrar" onclick="showCadastrar()">Cadastrar</a></li>
+                <li class="link-menu"><img src="./icones/Vector.svg" alt="icones"><a href="#inicio" onclick="showInicio()">Início</a></li>
+                <li class="link-menu"><img src="./icones/Vector-1.svg" alt="icones"><a href="#consultar" onclick="showConsultar()">Consultar</a></li>
+                <li class="link-menu"><img src="./icones/Vector-2.svg" alt="icones"><a href="#beneficios" onclick="showBeneficios()">Benefícios</a></li>
+                <li class="link-menu"><img src="./icones/Vector-3.svg" alt="icones"><a href="#contato" onclick="showContato()">Contato</a></li> <!-- Adicionado Contato -->
+                <li class="link-menu"><img src="./icones/Vector-4.svg" alt="icones"><a href="#cadastrar" onclick="showCadastrar()">Cadastrar</a></li>
 
             </ul>
         </nav>
@@ -275,15 +275,24 @@
         if (dados) {
             const usuario = JSON.parse(dados);
             resultado.innerHTML = `
-                <strong>Cadastro Encontrado:</strong><br>
-                Nome: ${usuario.nome}<br>
-                CPF: ${usuario.cpf}<br>
-                Instituição: ${usuario.instituicao}<br>
-                Curso: ${usuario.curso}<br>
-                Matrícula: ${usuario.matricula}<br>
-                E-mail: ${usuario.email}<br>
-                Telefone: ${usuario.telefone}<br>
-                Data de Nascimento: ${usuario.dataNascimento}
+                <div class='contentcard'>
+                    <h3>Recarga PA</h3>
+                    <div class='contentimagens'>
+                        <img src="./icones/fotousuario.png" alt="Foto do Usuário">
+                        <img src="./icones/qrcode.png" alt="QRCode">
+                    </div>
+                    <div class='contentresultado'>
+                        <h4>Cadastro Encontrado:</h4><br>
+                        <strong>Nome:</strong> ${usuario.nome}<br>
+                        <strong>CPF:</strong> ${usuario.cpf}<br>
+                        <strong>Instituição:</strong> ${usuario.instituicao}<br>
+                        <strong>Curso:</strong> ${usuario.curso}<br>
+                        <strong>Matrícula:</strong> ${usuario.matricula}<br>
+                        <strong>E-mail:</strong> ${usuario.email}<br>
+                        <strong>Telefone:</strong> ${usuario.telefone}<br>
+                        <strong>Data de Nascimento:</strong> ${usuario.dataNascimento}
+                    </div>
+                </div>
             `;
         } else {
             resultado.innerHTML = "<strong>Usuário não encontrado.</strong>";

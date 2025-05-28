@@ -20,21 +20,20 @@ body {
 header {
     background-color: #007BFF;
     color: white;
-    padding: 40px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    height: 80px;
+    padding: 12px 33px;
 }
 
 .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    max-width: 110px;
 }
 
 .logo img {
@@ -43,10 +42,6 @@ header {
 }
 
 .hamburger {
-    position: absolute;
-    right: 20px;
-    top: 50%;               /* mudar de 25px para 50% */
-    transform: translateY(-50%); /* centralizar verticalmente */
     width: 30px;
     height: 22px;
     display: flex;
@@ -87,6 +82,29 @@ nav ul {
     gap: 15px;
 }
 
+#nav-menu {
+    border-top: 1px solid white;
+}
+
+#nav-menu ul {
+    padding: 33px;
+    width: 100%;
+    align-items: start;
+}
+
+#nav-menu ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+}
+
+#nav-menu ul li img{
+    width: 100%;
+    max-width: 30px;
+    filter: invert(1);
+}
+
 nav a {
     color: white;
     text-decoration: none;
@@ -112,7 +130,6 @@ section#contato {
     scroll-margin-top: 120px;
 }
 
-/* ========== MAIN / INÍCIO ========== */
 main {
     display: flex;
     justify-content: flex-end;
@@ -131,8 +148,12 @@ main .content {
 /* ========== INÍCIO ========== */
 #inicio {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
+    background-image: url('./imagens/bginicio.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #inicio .content {
@@ -151,8 +172,9 @@ main .content {
     font-weight: 700;
     margin-bottom: 15px;
     color: #007BFF;
-    text-align: center;
+    text-align: left;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    max-width: 450px;
 }
 
 #inicio .content p {
@@ -224,9 +246,32 @@ section#consultar .content {
 }
 
 .resultado-consulta {
-    margin-top: 20px;
+    margin: 20px 0;
     font-style: italic;
     color: #444;
+}
+
+.resultado-consulta .contentcard {
+    padding: 16px;
+    background-color: white;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.resultado-consulta .contentcard .contentimagens  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.resultado-consulta .contentcard .contentresultado h4 {
+    margin-bottom: 2px;
+}
+
+.resultado-consulta .contentcard .contentimagens img{
+    max-width: 60px;
 }
 
 /* ========== CONTATO ========== */
