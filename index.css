@@ -123,7 +123,8 @@ section#inicio,
 section#consultar,
 section#beneficios,
 section#cadastrar,
-section#contato {
+section#contato,
+section#recarga {
     flex-grow: 1;
     padding: 120px 50px 40px;
     box-sizing: border-box;
@@ -327,6 +328,159 @@ section#cadastrar {
     display: flex;
     justify-content: center;
 }
+
+/* ========== RECARGA ========== */
+section#recarga {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 120px 50px 40px;
+    background-color: white;
+}
+
+.recarga-content {
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: #333;
+    padding: 30px;
+    text-align: left;
+}
+
+.recarga-content h2 {
+    color: #007BFF;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.recarga-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Container da recarga */
+.recarga-content {
+    max-width: 480px;
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Títulos */
+  .recarga-content h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  /* Parágrafos */
+  .recarga-content p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Inputs, selects e botões */
+  .recarga-content input[type="text"],
+  .recarga-content input[type="date"],
+  .recarga-content input[type="tel"],
+  .recarga-content input[type="email"],
+  .recarga-content select,
+  .recarga-content textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+  }
+  
+  .recarga-content input[type="text"]:focus,
+  .recarga-content input[type="date"]:focus,
+  .recarga-content input[type="tel"]:focus,
+  .recarga-content input[type="email"]:focus,
+  .recarga-content select:focus,
+  .recarga-content textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  /* Botões gerais */
+  .recarga-content button {
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .recarga-content button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Botões específicos na forma de pagamento (PIX e cartão) */
+  #formaPagamento button {
+    margin: 5px 1%;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 6px;
+    
+  }
+  
+  #formaPagamento button:hover {
+    background-color: #1c5980;
+  }
+  
+  /* Imagem QR Code PIX */
+  #formaPagamento img {
+    display: block;
+    margin: 20px auto;
+    max-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+  
+  /* Formulário cartão de crédito */
+  #formCartao label {
+    font-weight: 600;
+    color: #34495e;
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  #formCartao input {
+    margin-bottom: 15px;
+  }
+  
+  /* Texto final de conclusão */
+  #formaPagamento p {
+    font-size: 18px;
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+
 
 /* ========== FORMULÁRIOS ========== */
 form {

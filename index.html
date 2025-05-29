@@ -23,7 +23,7 @@
                 <li class="link-menu"><img src="./icones/Vector-2.svg" alt="icones"><a href="#beneficios" onclick="showBeneficios()">Benefícios</a></li>
                 <li class="link-menu"><img src="./icones/Vector-3.svg" alt="icones"><a href="#contato" onclick="showContato()">Contato</a></li> <!-- Adicionado Contato -->
                 <li class="link-menu"><img src="./icones/Vector-4.svg" alt="icones"><a href="#cadastrar" onclick="showCadastrar()">Cadastrar</a></li>
-
+                <li class="link-menu"><img src="./icones/recarga.svg" alt="icones"><a href="#recarga" onclick="showRecarga()">Recarga</a></li>
             </ul>
         </nav>
     </header>
@@ -154,7 +154,43 @@
             <button type="submit">Enviar Cadastro</button>
         </form>
     </div>
-</section>
+    </section>
+    <section id="recarga" style="display: none;">
+        <div class="recarga-content" id="telaCpf">
+          <h2>Recarga da Carteirinha</h2>
+          <p>Insira o seu CPF para realizar a recarga:</p>
+          <form id="formRecarga">
+            <label for="cpfRecarga">CPF:</label>
+            <input type="text" id="cpfRecarga" name="cpfRecarga" placeholder="Digite seu CPF" required />
+            <p>Ao continuar, você poderá fazer a recarga da sua carteirinha estudantil.</p>
+            <button type="submit">Continuar</button>
+          </form>
+        </div>
+      
+        <div class="recarga-content" id="telaRecarga" style="display: none;">
+          <h2>Escolha o valor da recarga</h2>
+          <p id="bemvindoUsuario"></p>
+          <form id="formValorRecarga">
+            <label for="valorRecarga">Valor da recarga (R$):</label>
+            <select id="valorRecarga" required>
+              <option value="">Selecione um valor</option>
+              <option value="10">R$ 10,00</option>
+              <option value="20">R$ 20,00</option>
+              <option value="30">R$ 30,00</option>
+              <option value="50">R$ 50,00</option>
+            </select>
+            <button type="submit">Confirmar Recarga</button>
+          </form>
+        </div>
+        <div id="formaPagamento" style="display: none;" class="recarga-content">
+            <h2>Escolha a forma de pagamento</h2>
+            <p>Selecione uma opção abaixo:</p>
+            <button type="button" onclick="pagar('pix')">PIX</button>
+            <button type="button" onclick="pagar('cartao')">Cartão de Crédito</button>
+        </div>
+        </section>
+      
+
     
 
     <footer>
@@ -174,6 +210,7 @@
         document.getElementById("beneficios").style.display = "none";
         document.getElementById("contato").style.display = "none";
         document.getElementById("cadastrar").style.display = "none";
+        document.getElementById("recarga").style.display = "none";
     }
 
     function scrollComOffset(elemento) {
@@ -183,22 +220,30 @@
     }
 
     function showInicio() {
-        esconderTodasAsSecoes();
-        const secao = document.getElementById("inicio");
-        secao.style.display = "flex";
-        scrollComOffset(secao);
-    }
+    esconderTodasAsSecoes();
+
+    // Resetar visual da aba de recarga
+    document.getElementById("telaCpf").style.display = "block";
+    document.getElementById("telaRecarga").style.display = "none";
+    document.getElementById("formaPagamento").style.display = "none";
+    document.getElementById("formRecarga").reset();
+    document.getElementById("formValorRecarga").reset();
+    document.getElementById("bemvindoUsuario").innerText = "";
+
+    const secao = document.getElementById("inicio");
+    secao.style.display = "flex";
+    scrollComOffset(secao);
+}
+
 
     function showConsultar() {
     esconderTodasAsSecoes();
     const secao = document.getElementById("consultar");
     secao.style.display = "flex";
 
-    // Limpar formulário de consulta
     const formConsulta = secao.querySelector("form");
     formConsulta.reset();
 
-    // Limpar resultado da consulta
     const resultadoDiv = secao.querySelector(".resultado-consulta");
     resultadoDiv.textContent = "Resultado da consulta aparecerá aqui.";
 
@@ -223,6 +268,13 @@
     function showCadastrar() {
         esconderTodasAsSecoes();
         const secao = document.getElementById("cadastrar");
+        secao.style.display = "flex";
+        scrollComOffset(secao);
+    }
+
+    function showRecarga() {
+        esconderTodasAsSecoes();
+        const secao = document.getElementById("recarga");
         secao.style.display = "flex";
         scrollComOffset(secao);
     }
@@ -265,39 +317,155 @@
         }
     });
 
-    // LÓGICA DE CONSULTA
-    document.getElementById('formConsulta').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const cpf = document.getElementById('cpfConsulta').value.trim();
-        const resultado = document.getElementById('resultadoConsulta');
+   // LÓGICA DE CONSULTA
+document.getElementById('formConsulta').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const cpf = document.getElementById('cpfConsulta').value.trim();
+    const resultado = document.getElementById('resultadoConsulta');
 
+    const dados = localStorage.getItem(cpf);
+    if (dados) {
+        const usuario = JSON.parse(dados);
+        const saldo = usuario.saldo ? parseFloat(usuario.saldo).toFixed(2) : "0.00";
+        
+        resultado.innerHTML = `
+            <div class='contentcard'>
+                <h3>Recarga PA</h3>
+                <div class='contentimagens'>
+                    <img src="./icones/fotousuario.png" alt="Foto do Usuário">
+                    <img src="./icones/qrcode.png" alt="QRCode">
+                </div>
+                <div class='contentresultado'>
+                    <h4>Cadastro Encontrado:</h4><br>
+                    <strong>Nome:</strong> ${usuario.nome}<br>
+                    <strong>CPF:</strong> ${usuario.cpf}<br>
+                    <strong>Instituição:</strong> ${usuario.instituicao}<br>
+                    <strong>Curso:</strong> ${usuario.curso}<br>
+                    <strong>Matrícula:</strong> ${usuario.matricula}<br>
+                    <strong>E-mail:</strong> ${usuario.email}<br>
+                    <strong>Telefone:</strong> ${usuario.telefone}<br>
+                    <strong>Data de Nascimento:</strong> ${usuario.dataNascimento}<br>
+                    <strong>Saldo atual:</strong> R$ ${saldo}
+                </div>
+            </div>
+        `;
+    } else {
+        resultado.innerHTML = "<strong>Usuário não encontrado.</strong>";
+    }
+});
+
+
+// LÓGICA DE RECARGA
+let valorSelecionado = "";
+
+document.getElementById('formRecarga').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const cpf = document.getElementById('cpfRecarga').value.trim();
+    const dados = localStorage.getItem(cpf);
+
+    if (dados) {
+        const usuario = JSON.parse(dados);
+        document.getElementById('bemvindoUsuario').innerText = `Olá, ${usuario.nome}. Selecione o valor da recarga abaixo:`;
+
+        document.getElementById('telaCpf').style.display = 'none';
+        document.getElementById('telaRecarga').style.display = 'block';
+    } else {
+        alert("CPF não encontrado. Por favor, cadastre-se antes de fazer a recarga.");
+    }
+});
+
+document.getElementById('formValorRecarga').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const valor = document.getElementById('valorRecarga').value;
+
+    if (valor) {
+        valorSelecionado = valor;
+
+        // Atualiza o saldo no localStorage
+        const cpf = document.getElementById('cpfRecarga').value.trim();
         const dados = localStorage.getItem(cpf);
         if (dados) {
             const usuario = JSON.parse(dados);
-            resultado.innerHTML = `
-                <div class='contentcard'>
-                    <h3>Recarga PA</h3>
-                    <div class='contentimagens'>
-                        <img src="./icones/fotousuario.png" alt="Foto do Usuário">
-                        <img src="./icones/qrcode.png" alt="QRCode">
-                    </div>
-                    <div class='contentresultado'>
-                        <h4>Cadastro Encontrado:</h4><br>
-                        <strong>Nome:</strong> ${usuario.nome}<br>
-                        <strong>CPF:</strong> ${usuario.cpf}<br>
-                        <strong>Instituição:</strong> ${usuario.instituicao}<br>
-                        <strong>Curso:</strong> ${usuario.curso}<br>
-                        <strong>Matrícula:</strong> ${usuario.matricula}<br>
-                        <strong>E-mail:</strong> ${usuario.email}<br>
-                        <strong>Telefone:</strong> ${usuario.telefone}<br>
-                        <strong>Data de Nascimento:</strong> ${usuario.dataNascimento}
-                    </div>
-                </div>
-            `;
-        } else {
-            resultado.innerHTML = "<strong>Usuário não encontrado.</strong>";
+            const saldoAtual = parseFloat(usuario.saldo || 0);
+            const novoSaldo = saldoAtual + parseFloat(valorSelecionado);
+            usuario.saldo = novoSaldo.toFixed(2);
+            localStorage.setItem(cpf, JSON.stringify(usuario));
         }
-    });
+
+        alert(`Recarga de R$ ${valor},00 gerada!`);
+        document.getElementById('telaRecarga').style.display = 'none';
+        document.getElementById('formaPagamento').style.display = 'block';
+
+        // Resetar conteúdo para evitar mensagens antigas
+        document.getElementById('formaPagamento').innerHTML = `
+            <h2>Selecione a forma de pagamento:</h2>
+            <p><strong>Valor da recarga:</strong> R$ ${valorSelecionado},00</p>
+            <button onclick="pagar('pix')">Pagar com PIX</button>
+            <button onclick="pagar('cartao')">Pagar com Cartão</button>
+        `;
+
+        this.reset();
+    } else {
+        alert("Por favor, selecione um valor.");
+    }
+});
+
+
+// Função única para pagamentos via PIX ou Cartão
+function pagar(metodo) {
+    const formaPagamento = document.getElementById("formaPagamento");
+
+    if (metodo === "pix") {
+        formaPagamento.innerHTML = `
+            <h2>Pagamento via PIX</h2>
+            <p><strong>Valor:</strong> R$ ${valorSelecionado},00</p>
+            <p>Escaneie o QR Code abaixo para finalizar a recarga:</p>
+            <img src="./icones/qrcode.png" alt="QR Code PIX" style="width: 200px;">
+            <p>Após o pagamento, sua recarga será confirmada em até 5 minutos.</p>
+            <button type="button" onclick="finalizar()">Concluir</button>
+        `;
+    } else if (metodo === "cartao") {
+        formaPagamento.innerHTML = `
+            <h2>Pagamento via Cartão de Crédito</h2>
+            <p><strong>Valor:</strong> R$ ${valorSelecionado},00</p>
+            <form id="formCartao">
+                <label for="nomeCartao">Nome no cartão:</label>
+                <input type="text" id="nomeCartao" required>
+
+                <label for="numeroCartao">Número do cartão:</label>
+                <input type="text" id="numeroCartao" placeholder="xxxx xxxx xxxx xxxx" required>
+
+                <label for="validadeCartao">Validade:</label>
+                <input type="text" id="validadeCartao" placeholder="MM/AA" required>
+
+                <label for="cvvCartao">CVV:</label>
+                <input type="text" id="cvvCartao" placeholder="123" required>
+
+                <button type="submit">Pagar</button>
+            </form>
+        `;
+
+        document.getElementById('formCartao').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Pagamento via cartão processado com sucesso!");
+            finalizar();
+        });
+    }
+}
+
+// Função final de conclusão
+function finalizar() {
+    document.getElementById("formaPagamento").innerHTML = `
+        <h2>Recarga Finalizada!</h2>
+        <p>Valor da recarga: <strong>R$ ${valorSelecionado},00</strong></p>
+        <p>Obrigado! Sua recarga foi concluída com sucesso.</p>
+        <button onclick="showInicio()">Voltar para o início</button>
+    `;
+}
+
+
+
+
 </script>
     
 </body>
