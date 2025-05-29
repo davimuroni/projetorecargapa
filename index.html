@@ -24,6 +24,7 @@
                 <li class="link-menu"><img src="./icones/Vector-3.svg" alt="icones"><a href="#contato" onclick="showContato()">Contato</a></li> <!-- Adicionado Contato -->
                 <li class="link-menu"><img src="./icones/Vector-4.svg" alt="icones"><a href="#cadastrar" onclick="showCadastrar()">Cadastrar</a></li>
                 <li class="link-menu"><img src="./icones/recarga.svg" alt="icones"><a href="#recarga" onclick="showRecarga()">Recarga</a></li>
+                <li class="link-menu"><img src="./icones/duvidas.svg" alt="icones"><a href="#duvidas" onclick="showDuvidas()">Dúvidas</a></li>
             </ul>
         </nav>
     </header>
@@ -171,15 +172,16 @@
           <h2>Escolha o valor da recarga</h2>
           <p id="bemvindoUsuario"></p>
           <form id="formValorRecarga">
-            <label for="valorRecarga">Valor da recarga (R$):</label>
-            <select id="valorRecarga" required>
-              <option value="">Selecione um valor</option>
-              <option value="10">R$ 10,00</option>
-              <option value="20">R$ 20,00</option>
-              <option value="30">R$ 30,00</option>
-              <option value="50">R$ 50,00</option>
-            </select>
-            <button type="submit">Confirmar Recarga</button>
+           <label for="valorRecarga">Escolha o valor:</label>
+            <div class="valores-container">
+            <div class="valor-card" data-valor="10">R$ 10,00</div>
+            <div class="valor-card" data-valor="20">R$ 20,00</div>
+            <div class="valor-card" data-valor="30">R$ 30,00</div>
+            <div class="valor-card" data-valor="50">R$ 50,00</div>
+            </div>
+            <input type="hidden" id="valorRecarga" required>
+
+        <button type="submit">Confirmar Recarga</button>
           </form>
         </div>
         <div id="formaPagamento" style="display: none;" class="recarga-content">
@@ -189,11 +191,15 @@
             <button type="button" onclick="pagar('cartao')">Cartão de Crédito</button>
         </div>
         </section>
-      
+        <section id="duvidas" style="display: none;">
+        <div class="content">
+            <h2>Dúvidas</h2>
+            <p>Aqui você pode responder as perguntas frequentes ou deixar instruções para o usuário.</p>
+        </div>
+        </section>
 
-    
 
-    <footer>
+      <footer>
         <p>2025 @ Todos os direitos reservados.</p>
     </footer>
 
@@ -211,6 +217,8 @@
         document.getElementById("contato").style.display = "none";
         document.getElementById("cadastrar").style.display = "none";
         document.getElementById("recarga").style.display = "none";
+        document.getElementById("duvidas").style.display = "none";
+        
     }
 
     function scrollComOffset(elemento) {
@@ -279,6 +287,12 @@
         scrollComOffset(secao);
     }
 
+        function showDuvidas() {
+        esconderTodasAsSecoes();
+        document.getElementById("duvidas").style.display = "block"; // Usar block
+        scrollComOffset(document.getElementById("duvidas"));
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const nav = document.getElementById("nav-menu");
         const links = nav.querySelectorAll("a");
@@ -318,41 +332,41 @@
     });
 
    // LÓGICA DE CONSULTA
-document.getElementById('formConsulta').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const cpf = document.getElementById('cpfConsulta').value.trim();
-    const resultado = document.getElementById('resultadoConsulta');
+        document.getElementById('formConsulta').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const cpf = document.getElementById('cpfConsulta').value.trim();
+        const resultado = document.getElementById('resultadoConsulta');
 
-    const dados = localStorage.getItem(cpf);
-    if (dados) {
-        const usuario = JSON.parse(dados);
-        const saldo = usuario.saldo ? parseFloat(usuario.saldo).toFixed(2) : "0.00";
-        
-        resultado.innerHTML = `
-            <div class='contentcard'>
-                <h3>Recarga PA</h3>
-                <div class='contentimagens'>
-                    <img src="./icones/fotousuario.png" alt="Foto do Usuário">
-                    <img src="./icones/qrcode.png" alt="QRCode">
+        const dados = localStorage.getItem(cpf);
+        if (dados) {
+            const usuario = JSON.parse(dados);
+            const saldo = usuario.saldo ? parseFloat(usuario.saldo).toFixed(2) : "0.00";
+            
+            resultado.innerHTML = `
+                <div class='contentcard'>
+                    <h3>Recarga PA</h3>
+                    <div class='contentimagens'>
+                        <img src="./icones/fotousuario.png" alt="Foto do Usuário">
+                        <img src="./icones/qrcode.png" alt="QRCode">
+                    </div>
+                    <div class='contentresultado'>
+                        <h4>Cadastro Encontrado:</h4><br>
+                        <strong>Nome:</strong> ${usuario.nome}<br>
+                        <strong>CPF:</strong> ${usuario.cpf}<br>
+                        <strong>Instituição:</strong> ${usuario.instituicao}<br>
+                        <strong>Curso:</strong> ${usuario.curso}<br>
+                        <strong>Matrícula:</strong> ${usuario.matricula}<br>
+                        <strong>E-mail:</strong> ${usuario.email}<br>
+                        <strong>Telefone:</strong> ${usuario.telefone}<br>
+                        <strong>Data de Nascimento:</strong> ${usuario.dataNascimento}<br>
+                        <strong>Saldo atual:</strong> R$ ${saldo}
+                    </div>
                 </div>
-                <div class='contentresultado'>
-                    <h4>Cadastro Encontrado:</h4><br>
-                    <strong>Nome:</strong> ${usuario.nome}<br>
-                    <strong>CPF:</strong> ${usuario.cpf}<br>
-                    <strong>Instituição:</strong> ${usuario.instituicao}<br>
-                    <strong>Curso:</strong> ${usuario.curso}<br>
-                    <strong>Matrícula:</strong> ${usuario.matricula}<br>
-                    <strong>E-mail:</strong> ${usuario.email}<br>
-                    <strong>Telefone:</strong> ${usuario.telefone}<br>
-                    <strong>Data de Nascimento:</strong> ${usuario.dataNascimento}<br>
-                    <strong>Saldo atual:</strong> R$ ${saldo}
-                </div>
-            </div>
-        `;
-    } else {
-        resultado.innerHTML = "<strong>Usuário não encontrado.</strong>";
-    }
-});
+            `;
+        } else {
+            resultado.innerHTML = "<strong>Usuário não encontrado.</strong>";
+        }
+    });
 
 
 // LÓGICA DE RECARGA
@@ -410,6 +424,17 @@ document.getElementById('formValorRecarga').addEventListener('submit', function(
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const botoesValores = document.querySelectorAll('.valor-card');
+  botoesValores.forEach(botao => {
+    botao.addEventListener('click', () => {
+      botoesValores.forEach(b => b.classList.remove('selecionado'));
+      botao.classList.add('selecionado');
+      const valor = botao.getAttribute('data-valor');
+      document.getElementById('valorRecarga').value = valor;
+    });
+  });
+});
 
 // Função única para pagamentos via PIX ou Cartão
 function pagar(metodo) {

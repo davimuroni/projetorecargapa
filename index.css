@@ -124,7 +124,8 @@ section#consultar,
 section#beneficios,
 section#cadastrar,
 section#contato,
-section#recarga {
+section#recarga,
+section#duvidas {
     flex-grow: 1;
     padding: 120px 50px 40px;
     box-sizing: border-box;
@@ -363,6 +364,41 @@ section#recarga {
     margin-bottom: 15px;
 }
 
+.valores-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.valor-card {
+  background-color: #f5f5f5;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 20px 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 100px;
+  text-align: center;
+  user-select: none;
+}
+
+.valor-card:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
+}
+
+.valor-card.selecionado {
+  border: 2px solid #007bff;
+  background-color: #e6f0ff;
+  color: #007bff;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
 /* Container da recarga */
 .recarga-content {
     max-width: 480px;
@@ -479,10 +515,26 @@ section#recarga {
     text-align: center;
     margin-top: 20px;
   }
-  
+
+  /* dúvidas */
+    #duvidas {
+        padding: 120px 50px 40px;
+        background-color: #f9f9f9;
+        color: #333;
+        scroll-margin-top: 120px;
+    }
+
+    #duvidas .content {
+        max-width: 700px;
+        margin: 0 auto;
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
 
 
-/* ========== FORMULÁRIOS ========== */
+  /* ========== FORMULÁRIOS ========== */
 form {
     display: flex;
     flex-direction: column;
