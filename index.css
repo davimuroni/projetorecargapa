@@ -654,6 +654,21 @@ footer {
     flex-shrink: 0;
 }
 
+.erro-msg {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 2px;
+  display: block;
+  min-height: 18px; /* para evitar "pular" layout quando a mensagem aparece */
+}
+
+#contadorMensagem {
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
 /* ========== RESPONSIVIDADE EM TELAS MENORES ========== */
 @media (max-width: 768px) {
     header {

@@ -95,66 +95,88 @@
 
     <!-- Nova Seção Contato -->
     <section id="contato" style="display: none;">
-        <div class="contato-content">
-            <h2>Contato</h2>
-            <p>Se você tem dúvidas, precisa de ajuda com sua solicitação ou deseja mais informações sobre a carteirinha estudantil, estamos à disposição para te ajudar!</p>
-            
-            <h3>Formulário de Contato</h3>
-            <p>Preencha o formulário abaixo e nossa equipe entrará em contato com você o mais rápido possível:</p>
-            
-            <form>
-                <label for="nomeContato">Nome Completo:</label>
-                <input type="text" id="nomeContato" name="nomeContato" placeholder="Digite seu nome completo" />
+    <div class="contato-content">
+        <h2>Contato</h2>
+        <p>Se você tem dúvidas, precisa de ajuda com sua solicitação ou deseja mais informações sobre a carteirinha estudantil, estamos à disposição para te ajudar!</p>
+        
+        <h3>Formulário de Contato</h3>
+        <p>Preencha o formulário abaixo e nossa equipe entrará em contato com você o mais rápido possível:</p>
+        
+        <form id="formContato" novalidate>
+            <label for="nomeContato">Nome Completo:</label>
+            <input type="text" id="nomeContato" name="nomeContato" placeholder="Digite seu nome completo" />
+            <small class="erro-msg" id="erroNomeContato"></small>
 
-                <label for="emailContato">E-mail:</label>
-                <input type="email" id="emailContato" name="emailContato" placeholder="Digite seu e-mail" />
+            <label for="emailContato">E-mail:</label>
+            <input type="email" id="emailContato" name="emailContato" placeholder="Digite seu e-mail" />
+            <small class="erro-msg" id="erroEmailContato"></small>
 
-                <label for="assuntoContato">Assunto:</label>
-                <select id="assuntoContato" name="assuntoContato">
-                    <option value="cadastro">Cadastro</option>
-                    <option value="beneficios">Benefícios</option>
-                    <option value="problema">Problema com a Carteirinha</option>
-                    <option value="outros">Outros</option>
-                </select>
+            <label for="assuntoContato">Assunto:</label>
+            <select id="assuntoContato" name="assuntoContato">
+                <option value="">-- Selecione --</option>
+                <option value="cadastro">Cadastro</option>
+                <option value="beneficios">Benefícios</option>
+                <option value="problema">Problema com a Carteirinha</option>
+                <option value="outros">Outros</option>
+            </select>
+            <small class="erro-msg" id="erroAssuntoContato"></small>
 
-                <label for="mensagemContato">Mensagem:</label>
-                <textarea id="mensagemContato" name="mensagemContato" placeholder="Escreva sua mensagem" rows="5"></textarea>
+            <label for="mensagemContato">Mensagem:</label>
+            <textarea id="mensagemContato" name="mensagemContato" placeholder="Escreva sua mensagem" rows="5" maxlength="200"></textarea>
+            <small class="erro-msg" id="erroMensagemContato"></small>
+            <div id="contadorMensagem">0 / 200 caracteres</div>
 
-                <button type="submit">Enviar Mensagem</button>
-            </form>
+            <button type="submit">Enviar Mensagem</button>
+        </form>
 
-            <h3>Outras Formas de Contato</h3>
-            <p>Se preferir, você pode entrar em contato conosco através dos seguintes meios:</p>
-            <ul class="contato-info">
-                <li><strong>Telefone:</strong> (35) 98427-0887</li>
-                <li><strong>E-mail:</strong> joaodavi.muroni@gmail.com</li>
-                <li><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 9h às 18h</li>
-            </ul>
-        </div>
-    </section>
+        <h3>Outras Formas de Contato</h3>
+        <p>Se preferir, você pode entrar em contato conosco através dos seguintes meios:</p>
+        <ul class="contato-info">
+            <li><strong>Telefone:</strong> (35) 98427-0887</li>
+            <li><strong>E-mail:</strong> joaodavi.muroni@gmail.com</li>
+            <li><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 9h às 18h</li>
+        </ul>
+    </div>
+</section>
     <section id="cadastrar" style="display: none;">
     <div class="contato-content">
         <h2>Cadastro de Estudante</h2>
         <p>Preencha o formulário abaixo para solicitar sua carteirinha estudantil.</p>
-        <form id="formCadastro">
-            <label for="nomeCadastro">Nome Completo:</label>
-            <input type="text" id="nomeCadastro" name="nomeCadastro" placeholder="Digite seu nome completo" required />
-            <label for="dataNascimento">Data de Nascimento:</label>
-            <input type="date" id="dataNascimento" name="dataNascimento" required />
-            <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required />
-            <label for="instituicao">Instituição de Ensino:</label>
-            <input type="text" id="instituicao" name="instituicao" placeholder="Digite o nome da instituição" required />
-            <label for="curso">Curso:</label>
-            <input type="text" id="curso" name="curso" placeholder="Digite o curso" required />
-            <label for="matriculaCadastro">Número da Matrícula:</label>
-            <input type="text" id="matriculaCadastro" name="matriculaCadastro" placeholder="Digite a matrícula" required />
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" required />
-            <label for="emailCadastro">E-mail:</label>
-            <input type="email" id="emailCadastro" name="emailCadastro" placeholder="Digite seu e-mail" required />
-            <button type="submit">Enviar Cadastro</button>
-        </form>
+        <form id="formCadastro" novalidate>
+            <label for="nomeCadastro">Nome: <span style="color:red">*</span></label>
+            <input type="text" id="nomeCadastro" name="nomeCadastro" />
+            <small class="erro-msg" id="erroNome"></small>
+
+            <label for="cpf">CPF: <span style="color:red">*</span></label>
+            <input type="text" id="cpf" name="cpf" placeholder="123.456.789-00" />
+            <small class="erro-msg" id="erroCpf"></small>
+
+            <label for="dataNascimento">Data de Nascimento: <span style="color:red">*</span></label>
+            <input type="date" id="dataNascimento" name="dataNascimento" />
+            <small class="erro-msg" id="erroData"></small>
+
+            <label for="instituicao">Instituição: <span style="color:red">*</span></label>
+            <input type="text" id="instituicao" name="instituicao" />
+            <small class="erro-msg" id="erroInstituicao"></small>
+
+            <label for="curso">Curso: <span style="color:red">*</span></label>
+            <input type="text" id="curso" name="curso" />
+            <small class="erro-msg" id="erroCurso"></small>
+
+            <label for="matriculaCadastro">Matrícula: <span style="color:red">*</span></label>
+            <input type="text" id="matriculaCadastro" name="matriculaCadastro" />
+            <small class="erro-msg" id="erroMatricula"></small>
+
+            <label for="telefone">Telefone: <span style="color:red">*</span></label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" />
+            <small class="erro-msg" id="erroTelefone"></small>
+
+            <label for="emailCadastro">E-mail: <span style="color:red">*</span></label>
+            <input type="email" id="emailCadastro" name="emailCadastro" />
+            <small class="erro-msg" id="erroEmail"></small>
+        <button type="submit">Cadastrar</button>
+    </form>
+
     </div>
     </section>
     <section id="recarga" style="display: none;">
@@ -393,34 +415,209 @@
         });
     });
 
-    // LÓGICA DE CADASTRO
     document.getElementById('formCadastro').addEventListener('submit', function(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        const nome = document.getElementById('nomeCadastro').value.trim();
-        const cpf = document.getElementById('cpf').value.trim();
+    const nome = document.getElementById('nomeCadastro').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const dataNascimento = document.getElementById('dataNascimento').value.trim();
+    const instituicao = document.getElementById('instituicao').value.trim();
+    const curso = document.getElementById('curso').value.trim();
+    const matricula = document.getElementById('matriculaCadastro').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const email = document.getElementById('emailCadastro').value.trim();
 
-        if (nome && cpf) {
-            const dados = {
-                nome: nome,
-                dataNascimento: document.getElementById('dataNascimento').value,
-                cpf: cpf,
-                instituicao: document.getElementById('instituicao').value,
-                curso: document.getElementById('curso').value,
-                matricula: document.getElementById('matriculaCadastro').value,
-                telefone: document.getElementById('telefone').value,
-                email: document.getElementById('emailCadastro').value
-            };
+    // Regex para validação
+    const regexNome = /^[A-Za-zÀ-ÿ\s]+$/; 
+    const regexCpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; 
+    const regexTelefone = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/; 
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            localStorage.setItem(cpf, JSON.stringify(dados));
-            alert("Cadastro realizado com sucesso!");
-            this.reset();
-        } else {
-            alert("Preencha os campos obrigatórios.");
-        }
+    // Função para mostrar erro
+    function mostrarErro(id, msg) {
+        const el = document.getElementById(id);
+        el.innerText = msg;
+    }
+
+    // Função para limpar erro
+    function limparErro(id) {
+        const el = document.getElementById(id);
+        el.innerText = "";
+    }
+
+    let valido = true;
+
+    // Valida Nome
+    if (!nome) {
+        mostrarErro('erroNome', 'Nome é obrigatório.');
+        valido = false;
+    } else if (!regexNome.test(nome)) {
+        mostrarErro('erroNome', 'Nome deve conter apenas letras e espaços.');
+        valido = false;
+    } else {
+        limparErro('erroNome');
+    }
+
+    // Valida CPF
+    if (!cpf) {
+        mostrarErro('erroCpf', 'CPF é obrigatório.');
+        valido = false;
+    } else if (!regexCpf.test(cpf)) {
+        mostrarErro('erroCpf', 'CPF deve ter o formato 000.000.000-00.');
+        valido = false;
+    } else {
+        limparErro('erroCpf');
+    }
+
+    // Valida Data de Nascimento
+    if (!dataNascimento) {
+        mostrarErro('erroData', 'Data de nascimento é obrigatória.');
+        valido = false;
+    } else {
+        limparErro('erroData');
+    }
+
+    // Valida Instituição
+    if (!instituicao) {
+        mostrarErro('erroInstituicao', 'Instituição é obrigatória.');
+        valido = false;
+    } else {
+        limparErro('erroInstituicao');
+    }
+
+    // Valida Curso
+    if (!curso) {
+        mostrarErro('erroCurso', 'Curso é obrigatório.');
+        valido = false;
+    } else {
+        limparErro('erroCurso');
+    }
+
+    // Valida Matrícula
+    if (!matricula) {
+        mostrarErro('erroMatricula', 'Matrícula é obrigatória.');
+        valido = false;
+    } else {
+        limparErro('erroMatricula');
+    }
+
+    // Valida Telefone
+    if (!telefone) {
+        mostrarErro('erroTelefone', 'Telefone é obrigatório.');
+        valido = false;
+    } else if (!regexTelefone.test(telefone)) {
+        mostrarErro('erroTelefone', 'Telefone deve ter o formato (00) 0000-0000 ou (00) 00000-0000.');
+        valido = false;
+    } else {
+        limparErro('erroTelefone');
+    }
+
+    // Valida E-mail
+    if (!email) {
+        mostrarErro('erroEmail', 'E-mail é obrigatório.');
+        valido = false;
+    } else if (!regexEmail.test(email)) {
+        mostrarErro('erroEmail', 'E-mail inválido.');
+        valido = false;
+    } else {
+        limparErro('erroEmail');
+    }
+
+    if (!valido) {
+        return; 
+    }
+
+    const dados = {
+        nome,
+        dataNascimento,
+        cpf,
+        instituicao,
+        curso,
+        matricula,
+        telefone,
+        email
+    };
+
+    localStorage.setItem(cpf, JSON.stringify(dados));
+    alert("Cadastro realizado com sucesso!");
+    this.reset();
+
+    ['erroNome', 'erroCpf', 'erroData', 'erroInstituicao', 'erroCurso', 'erroMatricula', 'erroTelefone', 'erroEmail']
+        .forEach(id => limparErro(id));
     });
 
-   // LÓGICA DE CONSULTA
+        //LÓGICA DE CONTATO
+        document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('formContato');
+    const nome = document.getElementById('nomeContato');
+    const email = document.getElementById('emailContato');
+    const assunto = document.getElementById('assuntoContato');
+    const mensagem = document.getElementById('mensagemContato');
+
+    const erroNome = document.getElementById('erroNomeContato');
+    const erroEmail = document.getElementById('erroEmailContato');
+    const erroAssunto = document.getElementById('erroAssuntoContato');
+    const erroMensagem = document.getElementById('erroMensagemContato');
+
+    const contadorMensagem = document.getElementById('contadorMensagem');
+
+    // Atualiza contador de caracteres da mensagem
+    mensagem.addEventListener('input', function() {
+        const length = mensagem.value.length;
+        contadorMensagem.innerText = `${length} / 200 caracteres`;
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let valido = true;
+
+        // Limpa erros
+        erroNome.innerText = '';
+        erroEmail.innerText = '';
+        erroAssunto.innerText = '';
+        erroMensagem.innerText = '';
+
+        // Valida Nome
+        if (!nome.value.trim()) {
+            erroNome.innerText = 'Nome é obrigatório.';
+            valido = false;
+        }
+
+        // Valida Email básico
+        if (!email.value.trim()) {
+            erroEmail.innerText = 'E-mail é obrigatório.';
+            valido = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+            erroEmail.innerText = 'E-mail inválido.';
+            valido = false;
+        }
+
+        // Valida Assunto (não pode estar vazio)
+        if (!assunto.value) {
+            erroAssunto.innerText = 'Por favor, selecione um assunto.';
+            valido = false;
+        }
+
+        // Valida Mensagem
+        if (!mensagem.value.trim()) {
+            erroMensagem.innerText = 'Mensagem é obrigatória.';
+            valido = false;
+        } else if (mensagem.value.length > 200) {
+            erroMensagem.innerText = 'Mensagem deve ter até 200 caracteres.';
+            valido = false;
+        }
+
+        if (!valido) return;
+
+        alert('Mensagem enviada com sucesso!');
+        form.reset(); // limpa todos os campos do formulário
+        contadorMensagem.innerText = '0 / 200 caracteres'; // reseta o contador também
+        });
+    });
+
+
+        // LÓGICA DE CONSULTA
         document.getElementById('formConsulta').addEventListener('submit', function(e) {
         e.preventDefault();
         const cpf = document.getElementById('cpfConsulta').value.trim();
