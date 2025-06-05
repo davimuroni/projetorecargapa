@@ -184,6 +184,14 @@ main .content {
     margin-bottom: 0.5rem;
 }
 
+.imagem-centralizada { 
+    display: block;
+    margin: 50px auto 20px auto; 
+    max-width: 45%;
+    height: auto;
+    margin-left: 20%; 
+}
+
 /* ========== BENEFÍCIOS ========== */
 .beneficios-content {
     max-width: 700px;
@@ -605,6 +613,12 @@ form {
     width: 100%;
 }
 
+.recarga-content p,
+form label {
+    line-height: 1.6;
+}
+
+
 form label {
     font-weight: bold;
     font-size: 16px;
@@ -627,7 +641,9 @@ form select:focus,
 form textarea:focus {
     border-color: #007BFF;
     outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+
 
 form button {
     padding: 12px;
@@ -671,53 +687,110 @@ footer {
 
 /* ========== RESPONSIVIDADE EM TELAS MENORES ========== */
 @media (max-width: 768px) {
-    header {
+  header {
     padding: 10px 30px;
-    justify-content: space-between; 
-    padding: 10px 30px;              
-    }
+    justify-content: space-between;
+  }
 
-    .logo {
+  .logo {
     position: static;
     transform: none;
-    margin: -10px auto -25px; 
+    margin: -10px auto -25px;
     width: 110px;
   }
 
-    .hamburger {
-    position: relative;     
-    right: 0;               
-    top: 0;                 
-    transform: none;       
-    }
+  .hamburger {
+    position: relative;
+    right: 0;
+    top: 0;
+    transform: none;
+  }
 
-    nav {
-        top: 75px;
-    }
+  nav {
+    top: 75px;
+  }
 
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    main {
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-    }
+  main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
 
-    main .content,
-    .beneficios-content,
-    .contato-content,
-    #inicio .content {
-        width: 100%;
-        padding: 20px;
-        text-align: left;
-        font-size: 1.1rem;
-    }
+  main .content,
+  .beneficios-content,
+  .contato-content,
+  #inicio .content {
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+    font-size: 1.1rem;
+  }
 
-    footer {
-        height: 60px;
-        line-height: 10px;
-    }
+  footer {
+    height: 60px;
+    line-height: 10px;
+  }
+}
+
+/* ========== APERFEIÇOAMENTO PARA TELAS AINDA MENORES (até 480px) ========== */
+@media (max-width: 480px) {
+  .recarga-content {
+    max-width: 480px;
+    width: 90%;
+    margin: 15px auto;
+    padding: 15px 20px;
+  }
+
+  .recarga-content h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .recarga-content p {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  /* Inputs, selects, textarea e botões */
+  .recarga-content input[type="text"],
+  .recarga-content input[type="date"],
+  .recarga-content input[type="tel"],
+  .recarga-content input[type="email"],
+  .recarga-content select,
+  .recarga-content textarea,
+  form input,
+  form select,
+  form textarea {
+    font-size: 18px;
+    padding: 14px 16px;
+  }
+
+  /* Botões gerais e específicos */
+  .recarga-content button,
+  form button,
+  #formaPagamento button {
+    font-size: 18px;
+    padding: 14px 16px;
+    width: 100%;
+  }
+
+  /* QR Code imagem */
+  #formaPagamento img {
+    max-width: 90%;
+    height: auto;
+    margin: 20px auto;
+  }
+
+  form {
+    gap: 20px;
+  }
+
+  form button {
+    align-self: stretch;
+  }
 }

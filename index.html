@@ -40,8 +40,9 @@
           <p>Aproveite as vantagens e tenha a sua carteirinha em mãos para desfrutar de descontos e benefícios em diversos serviços.</p>
           
           <p>Não perca tempo, cadastre-se agora e comece a aproveitar todos os benefícios de ser um estudante!</p>
+            <img src="./imagens/qrcodeinicio.jpeg" alt="qrcode" class="imagem-centralizada">
         </div>
-      </main>
+    </main>
       
 
 
@@ -168,7 +169,7 @@
             <small class="erro-msg" id="erroMatricula"></small>
 
             <label for="telefone">Telefone: <span style="color:red">*</span></label>
-            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" />
+            <input type="tel" id="numeric" name="telefone" placeholder="(XX) XXXXX-XXXX" />
             <small class="erro-msg" id="erroTelefone"></small>
 
             <label for="emailCadastro">E-mail: <span style="color:red">*</span></label>
@@ -176,7 +177,6 @@
             <small class="erro-msg" id="erroEmail"></small>
         <button type="submit">Cadastrar</button>
     </form>
-
     </div>
     </section>
     <section id="recarga" style="display: none;">
@@ -655,133 +655,133 @@
     });
 
 
-// LÓGICA DE RECARGA
-let valorSelecionado = 0; // valor base (sem taxa)
-const taxa = 2; // taxa fixa de R$2
+    // LÓGICA DE RECARGA
+    let valorSelecionado = 0; // valor base (sem taxa)
+    const taxa = 2; // taxa fixa de R$2
 
-document.getElementById('formRecarga').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const cpf = document.getElementById('cpfRecarga').value.trim();
-    const dados = localStorage.getItem(cpf);
-
-    if (dados) {
-        const usuario = JSON.parse(dados);
-        document.getElementById('bemvindoUsuario').innerText = `Olá, ${usuario.nome}. Selecione o valor da recarga abaixo:`;
-
-        document.getElementById('telaCpf').style.display = 'none';
-        document.getElementById('telaRecarga').style.display = 'block';
-    } else {
-        alert("CPF não encontrado. Por favor, cadastre-se antes de fazer a recarga.");
-    }
-});
-
-document.getElementById('formValorRecarga').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const valor = parseFloat(document.getElementById('valorRecarga').value);
-
-    if (!isNaN(valor)) {
-        valorSelecionado = valor;
-
-        // Atualiza saldo SOMENTE com o valor base, sem taxa
+    document.getElementById('formRecarga').addEventListener('submit', function(e) {
+        e.preventDefault();
         const cpf = document.getElementById('cpfRecarga').value.trim();
         const dados = localStorage.getItem(cpf);
+
         if (dados) {
             const usuario = JSON.parse(dados);
-            const saldoAtual = parseFloat(usuario.saldo || 0);
-            const novoSaldo = saldoAtual + valorSelecionado;
-            usuario.saldo = novoSaldo.toFixed(2);
-            localStorage.setItem(cpf, JSON.stringify(usuario));
+            document.getElementById('bemvindoUsuario').innerText = `Olá, ${usuario.nome}. Selecione o valor da recarga abaixo:`;
+
+            document.getElementById('telaCpf').style.display = 'none';
+            document.getElementById('telaRecarga').style.display = 'block';
+        } else {
+            alert("CPF não encontrado. Por favor, cadastre-se antes de fazer a recarga.");
         }
-
-        alert(`Recarga de R$ ${valorSelecionado.toFixed(2).replace('.', ',')} gerada! Será adicionada uma taxa de R$ 2,00 no pagamento.`);
-        document.getElementById('telaRecarga').style.display = 'none';
-        document.getElementById('formaPagamento').style.display = 'block';
-
-        const valorComTaxa = valorSelecionado + taxa;
-
-        document.getElementById('formaPagamento').innerHTML = `
-            <h2>Selecione a forma de pagamento:</h2>
-            <p><strong>Valor da recarga:</strong> R$ ${valorSelecionado.toFixed(2).replace('.', ',')}</p>
-            <p><strong>Taxa adicional:</strong> R$ ${taxa.toFixed(2).replace('.', ',')}</p>
-            <p><strong>Total a pagar:</strong> R$ ${valorComTaxa.toFixed(2).replace('.', ',')}</p>
-            <button onclick="pagar('pix')">Pagar com PIX</button>
-            <button onclick="pagar('cartao')">Pagar com Cartão</button>
-        `;
-
-        this.reset();
-    } else {
-        alert("Por favor, selecione um valor.");
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const botoesValores = document.querySelectorAll('.valor-card');
-  botoesValores.forEach(botao => {
-    botao.addEventListener('click', () => {
-      botoesValores.forEach(b => b.classList.remove('selecionado'));
-      botao.classList.add('selecionado');
-
-      const valorBase = parseFloat(botao.getAttribute('data-valor'));
-      valorSelecionado = valorBase; // só o valor base, sem taxa
-      document.getElementById('valorRecarga').value = valorBase.toFixed(2);
     });
-  });
-});
 
-// Função de pagamento com taxa no valor mostrado
-function pagar(metodo) {
-    const formaPagamento = document.getElementById("formaPagamento");
-    const valorComTaxa = valorSelecionado + taxa;
-    const valorTexto = `R$ ${valorComTaxa.toFixed(2).replace('.', ',')}`;
+    document.getElementById('formValorRecarga').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const valor = parseFloat(document.getElementById('valorRecarga').value);
 
-    if (metodo === "pix") {
-        formaPagamento.innerHTML = `
-            <h2>Pagamento via PIX</h2>
-            <p><strong>Valor a pagar:</strong> ${valorTexto}</p>
-            <p>Escaneie o QR Code abaixo para finalizar a recarga:</p>
-            <img src="./icones/qrcode.png" alt="QR Code PIX" style="width: 200px;">
-            <p>Após o pagamento, sua recarga será confirmada em até 5 minutos.</p>
-            <button type="button" onclick="finalizar()">Concluir</button>
-        `;
-    } else if (metodo === "cartao") {
-        formaPagamento.innerHTML = `
-            <h2>Pagamento via Cartão de Crédito</h2>
-            <p><strong>Valor a pagar:</strong> ${valorTexto}</p>
-            <form id="formCartao">
-                <label for="nomeCartao">Nome no cartão:</label>
-                <input type="text" id="nomeCartao" required>
+        if (!isNaN(valor)) {
+            valorSelecionado = valor;
 
-                <label for="numeroCartao">Número do cartão:</label>
-                <input type="text" id="numeroCartao" placeholder="xxxx xxxx xxxx xxxx" required>
+            // Atualiza saldo SOMENTE com o valor base, sem taxa
+            const cpf = document.getElementById('cpfRecarga').value.trim();
+            const dados = localStorage.getItem(cpf);
+            if (dados) {
+                const usuario = JSON.parse(dados);
+                const saldoAtual = parseFloat(usuario.saldo || 0);
+                const novoSaldo = saldoAtual + valorSelecionado;
+                usuario.saldo = novoSaldo.toFixed(2);
+                localStorage.setItem(cpf, JSON.stringify(usuario));
+            }
 
-                <label for="validadeCartao">Validade:</label>
-                <input type="text" id="validadeCartao" placeholder="MM/AA" required>
+            alert(`Recarga de R$ ${valorSelecionado.toFixed(2).replace('.', ',')} gerada! Será adicionada uma taxa de R$ 2,00 no pagamento.`);
+            document.getElementById('telaRecarga').style.display = 'none';
+            document.getElementById('formaPagamento').style.display = 'block';
 
-                <label for="cvvCartao">CVV:</label>
-                <input type="text" id="cvvCartao" placeholder="123" required>
+            const valorComTaxa = valorSelecionado + taxa;
 
-                <button type="submit">Pagar</button>
-            </form>
-        `;
+            document.getElementById('formaPagamento').innerHTML = `
+                <h2>Selecione a forma de pagamento:</h2>
+                <p><strong>Valor da recarga:</strong> R$ ${valorSelecionado.toFixed(2).replace('.', ',')}</p>
+                <p><strong>Taxa adicional:</strong> R$ ${taxa.toFixed(2).replace('.', ',')}</p>
+                <p><strong>Total a pagar:</strong> R$ ${valorComTaxa.toFixed(2).replace('.', ',')}</p>
+                <button onclick="pagar('pix')">Pagar com PIX</button>
+                <button onclick="pagar('cartao')">Pagar com Cartão</button>
+            `;
 
-        document.getElementById('formCartao').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert("Pagamento via cartão processado com sucesso!");
-            finalizar();
+            this.reset();
+        } else {
+            alert("Por favor, selecione um valor.");
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const botoesValores = document.querySelectorAll('.valor-card');
+    botoesValores.forEach(botao => {
+        botao.addEventListener('click', () => {
+        botoesValores.forEach(b => b.classList.remove('selecionado'));
+        botao.classList.add('selecionado');
+
+        const valorBase = parseFloat(botao.getAttribute('data-valor'));
+        valorSelecionado = valorBase; // só o valor base, sem taxa
+        document.getElementById('valorRecarga').value = valorBase.toFixed(2);
         });
+    });
+    });
+
+    // Função de pagamento com taxa no valor mostrado
+    function pagar(metodo) {
+        const formaPagamento = document.getElementById("formaPagamento");
+        const valorComTaxa = valorSelecionado + taxa;
+        const valorTexto = `R$ ${valorComTaxa.toFixed(2).replace('.', ',')}`;
+
+        if (metodo === "pix") {
+            formaPagamento.innerHTML = `
+                <h2>Pagamento via PIX</h2>
+                <p><strong>Valor a pagar:</strong> ${valorTexto}</p>
+                <p>Escaneie o QR Code abaixo para finalizar a recarga:</p>
+                <img src="./icones/qrcode.png" alt="QR Code PIX" style="width: 200px;">
+                <p>Após o pagamento, sua recarga será confirmada em até 5 minutos.</p>
+                <button type="button" onclick="finalizar()">Concluir</button>
+            `;
+        } else if (metodo === "cartao") {
+            formaPagamento.innerHTML = `
+                <h2>Pagamento via Cartão de Crédito</h2>
+                <p><strong>Valor a pagar:</strong> ${valorTexto}</p>
+                <form id="formCartao">
+                    <label for="nomeCartao">Nome no cartão:</label>
+                    <input type="text" id="nomeCartao" required>
+
+                    <label for="numeroCartao">Número do cartão:</label>
+                    <input type="text" id="numeroCartao" placeholder="xxxx xxxx xxxx xxxx" required>
+
+                    <label for="validadeCartao">Validade:</label>
+                    <input type="text" id="validadeCartao" placeholder="MM/AA" required>
+
+                    <label for="cvvCartao">CVV:</label>
+                    <input type="text" id="cvvCartao" placeholder="123" required>
+
+                    <button type="submit">Pagar</button>
+                </form>
+            `;
+
+            document.getElementById('formCartao').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert("Pagamento via cartão processado com sucesso!");
+                finalizar();
+            });
+        }
     }
-}
 
-function finalizar() {
-    const valorTexto = `R$ ${valorSelecionado.toFixed(2).replace('.', ',')}`;
+    function finalizar() {
+        const valorTexto = `R$ ${valorSelecionado.toFixed(2).replace('.', ',')}`;
 
-    document.getElementById("formaPagamento").innerHTML = `
-        <h2>Recarga Finalizada!</h2>
-        <p>Valor da recarga: <strong>${valorTexto}</strong></p>
-        <p>Obrigado! Sua recarga foi concluída com sucesso.</p>
-        <button onclick="showInicio()">Voltar para o início</button>
-    `;
-}
+        document.getElementById("formaPagamento").innerHTML = `
+            <h2>Recarga Finalizada!</h2>
+            <p>Valor da recarga: <strong>${valorTexto}</strong></p>
+            <p>Obrigado! Sua recarga foi concluída com sucesso.</p>
+            <button onclick="showInicio()">Voltar para o início</button>
+        `;
+    }
 </script>
     
 </body>
