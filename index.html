@@ -41,6 +41,7 @@
           
           <p>Não perca tempo, cadastre-se agora e comece a aproveitar todos os benefícios de ser um estudante!</p>
             <img src="./imagens/qrcodeinicio.jpeg" alt="qrcode" class="imagem-centralizada">
+            <h2 class="text-qrcode">Versão Mobile</h2>
         </div>
     </main>
       
@@ -133,8 +134,8 @@
         <h3>Outras Formas de Contato</h3>
         <p>Se preferir, você pode entrar em contato conosco através dos seguintes meios:</p>
         <ul class="contato-info">
-            <li><strong>Telefone:</strong> (35) 98427-0887</li>
-            <li><strong>E-mail:</strong> joaodavi.muroni@gmail.com</li>
+            <li><strong>Telefone:</strong> (XX) X XXXX-XXXX</li>
+            <li><strong>E-mail:</strong> suporte@recargacarteira.com.br</li>
             <li><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 9h às 18h</li>
         </ul>
     </div>
@@ -169,7 +170,7 @@
             <small class="erro-msg" id="erroMatricula"></small>
 
             <label for="telefone">Telefone: <span style="color:red">*</span></label>
-            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" inputmode="numeric"/>
+            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" inputmode="tel" maxlength="15"/>
             <small class="erro-msg" id="erroTelefone"></small>
 
             <label for="emailCadastro">E-mail: <span style="color:red">*</span></label>
@@ -300,7 +301,7 @@
 
         <h3> Atendimento e Suporte</h3>
         <ul>
-        <li> WhatsApp: (XX) 9 9999-9999</li>
+        <li> WhatsApp: (XX) X XXXX-XXXX</li>
         <li> E-mail: suporte@recargacarteira.com.br</li>
         <li> Horário de atendimento: Segunda a sexta, das 08h às 18h</li>
         </ul>
@@ -414,6 +415,30 @@
             });
         });
     });
+
+    const telefoneInput = document.getElementById('telefone');
+
+    telefoneInput.addEventListener('input', function (e) {
+    let valor = telefoneInput.value.replace(/\D/g, '');
+
+    if (valor.length > 11) valor = valor.slice(0, 11);
+
+    let formatado = '';
+
+    if (valor.length >= 11) {
+        formatado = `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7, 11)}`;
+    } else if (valor.length >= 7) {
+        formatado = `(${valor.slice(0, 2)}) ${valor.slice(2, 6)}-${valor.slice(6)}`;
+    } else if (valor.length > 2) {
+        formatado = `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+    } else if (valor.length > 0) {
+        formatado = `(${valor}`;
+    }
+
+    telefoneInput.value = formatado;
+});
+
+
 
     document.getElementById('formCadastro').addEventListener('submit', function(e) {
     e.preventDefault();

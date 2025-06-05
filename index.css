@@ -192,6 +192,10 @@ main .content {
     margin-left: 20%; 
 }
 
+.text-qrcode {
+    margin-left: 24%; 
+}
+
 /* ========== BENEFÍCIOS ========== */
 .beneficios-content {
     max-width: 700px;
