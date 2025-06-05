@@ -184,17 +184,26 @@ main .content {
     margin-bottom: 0.5rem;
 }
 
-.imagem-centralizada { 
-    display: block;
-    margin: 50px auto 20px auto; 
-    max-width: 45%;
-    height: auto;
-    margin-left: 20%; 
+.qrcode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.qrcode-container img {
+  max-width: 45%;
+  height: auto;
 }
 
 .text-qrcode {
-    margin-left: 24%; 
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2rem;
 }
+
+
+
 
 /* ========== BENEFÍCIOS ========== */
 .beneficios-content {
