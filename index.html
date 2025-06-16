@@ -178,7 +178,19 @@
             <label for="emailCadastro">E-mail: <span style="color:red">*</span></label>
             <input type="email" id="emailCadastro" name="emailCadastro" />
             <small class="erro-msg" id="erroEmail"></small>
-        <button type="submit">Cadastrar</button>
+
+            <label for="documentoIdentidade">Documento de Identidade (RG): <span style="color:red">*</span></label>
+            <input type="file" id="documentoIdentidade" name="documentoIdentidade" accept=".jpg,.jpeg,.png,.pdf" />
+            <small class="erro-msg" id="erroDocumentoIdentidade"></small>
+
+            <label for="comprovanteMatricula">Comprovante de Matrícula (PDF ou Imagem): <span style="color:red">*</span></label>
+            <input type="file" id="comprovanteMatricula" name="comprovanteMatricula" accept=".jpg,.jpeg,.png,.pdf" />
+            <small class="erro-msg" id="erroComprovanteMatricula"></small>
+
+            <label for="fotoAtualizada">Foto Atualizada (tipo documento): <span style="color:red">*</span></label>
+            <input type="file" id="fotoAtualizada" name="fotoAtualizada" accept=".jpg,.jpeg,.png" />
+            <small class="erro-msg" id="erroFotoAtualizada"></small>
+                <button type="submit">Cadastrar</button>
     </form>
     </div>
     </section>
@@ -672,7 +684,8 @@
                         <strong>E-mail:</strong> ${usuario.email}<br>
                         <strong>Telefone:</strong> ${usuario.telefone}<br>
                         <strong>Data de Nascimento:</strong> ${usuario.dataNascimento}<br>
-                        <strong>Saldo atual:</strong> R$ ${saldo}
+                        <strong>Saldo atual:</strong> R$ ${saldo}<br><br>
+                        <br><strong style="color:green">Documentos verificados ✅</strong>
                     </div>
                 </div>
             `;
